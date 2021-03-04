@@ -1,12 +1,12 @@
-import {MigrationInterface, QueryRunner } from "typeorm";
+import {MigrationInterface, QueryRunner} from "typeorm";
 import { Table } from "typeorm/schema-builder/table/Table";
 
-export class CreateUsers1614785948044 implements MigrationInterface {
+export class CreateSurveys1614862757683 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.createTable(
             new Table({
-              name: "users",
+              name: "surveys",
               columns: [
                 {
                   name: "id",
@@ -14,11 +14,11 @@ export class CreateUsers1614785948044 implements MigrationInterface {
                   isPrimary: true,
                 },
                 {
-                  name: "name",
+                  name: "title",
                   type: "varchar",
                 },
                 {
-                  name: "email",
+                  name: "description",
                   type: "varchar",
                 },
                 {
@@ -31,11 +31,9 @@ export class CreateUsers1614785948044 implements MigrationInterface {
           );
     }
 
-    // down para remover a tabela 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.dropTable("users");
+        await queryRunner.dropTable("surveys");
+
     }
+
 }
-
-
-

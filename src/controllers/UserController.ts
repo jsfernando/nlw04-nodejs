@@ -1,12 +1,15 @@
 import { Request, Response } from "express";
-import { getRepository } from "typeorm";
-import { User } from "../models/User";
+import { getCustomRepository } from "typeorm";
+import { UsersRepository } from "../repository/UsersRespository";
 class UserController {
 
     async create(request: Request, response: Response){
         const {name, email } = request.body;
         
-        const usersRepository = getRepository(User);
+        // const usersRepository = getRepository(User);
+        // aula 3 - refatorando, desmembrando o getRepository em uma classe repository
+        const usersRepository = getCustomRepository(UsersRepository)
+
 
         // checar se já existe o usuário 2o.passo apos a inclusão
         // SELECT * FROM USERS WHERE EMAIL = "EMAIL"
@@ -32,4 +35,4 @@ class UserController {
 
 }
 
-export { UserController }
+export { UserController };
